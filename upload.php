@@ -17,6 +17,7 @@ include_once "./api/base.php";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>檔案上傳</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <style>
         .list {
             list-style-type: none;
@@ -52,7 +53,7 @@ include_once "./api/base.php";
         }
 
         .list-item div:nth-child(2) {
-            width: 50%;
+            width: 40%;
         }
 
         .list-item div:nth-child(3) {
@@ -67,12 +68,17 @@ include_once "./api/base.php";
             width: 10%;
             overflow: hidden;
         }
+
+        .list-item div:nth-child(6) {
+            width: 10%;
+        }
     </style>
 </head>
 
 <body>
     <h1 class="header">檔案上傳練習</h1>
     <!----建立你的表單及設定編碼----->
+    
 
     <?php
     if (isset($_GET['upload']) && $_GET['upload'] == 'success')
@@ -107,6 +113,7 @@ include_once "./api/base.php";
         echo "<div>檔名</div>";
         echo "<div>大小</div>";
         echo "<div>類型</div>";
+        echo "<div>操作</div>";
         echo "</li>";
         foreach ($files as $file) {
             echo "<li class='list-item'>";
@@ -126,10 +133,14 @@ include_once "./api/base.php";
             echo $file['file_name'];
             echo "</div>";
             echo "<div>";
-            echo floor($file['size']/1024) ."KB";
+            echo floor($file['size'] / 1024) . "KB";
             echo "</div>";
             echo "<div>";
             echo $file['type'];
+            echo "</div>";
+            echo "<div>";
+            echo "<a href='edit_form.php?id={$file['id']}'>編輯</a>";
+            echo "<a href='./api/del.php?id={$file['id']}'>刪除</a>";
             echo "</div>";
             echo "</li>";
         }
