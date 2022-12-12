@@ -1,0 +1,25 @@
+
+ //宣告
+ function myFun() {
+     document.write('myFun ok');
+     console.log('myFun ok');
+ }
+      //普通的Function，無帶值，無回傳，被呼叫時執行。
+
+
+ //有變數
+ function helloFun(nameInput, age) {
+     let str = `Hello ${nameInput} ${age}`;  
+     console.log('str', str);
+ }
+      //可以在外面帶值進入this.Function，在呼叫處使用 helloFun( Kevin , 21 )，會把Kevin ， 21 分別帶入裡面相對應的位置 
+      //let nameInput = Kevin	let age = 21 
+
+
+
+ //有回傳值
+ function sum(num1, num2) {
+       return num1+num2;     
+ }
+
+      //使用return將數值回傳，在下方使用"console.log(sum(10,20));"，會得到this.Function回傳出來的值 30 。

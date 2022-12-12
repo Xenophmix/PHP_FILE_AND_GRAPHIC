@@ -22,7 +22,7 @@ include_once "./api/base.php";
             list-style-type: none;
             padding: 0;
             margin: auto;
-            padding-top:1px;
+            padding-top: 1px;
             width: 80%;
         }
 
@@ -32,30 +32,40 @@ include_once "./api/base.php";
             border: 1px solid #aaa;
             margin-top: -1px;
         }
+
         .list-item:nth-child(1) {
             text-align: center;
             background-color: lightgreen;
         }
-        .list-item div{
+
+        .list-item div {
             text-align: center;
         }
-        .list-item div:nth-child(1){
-            width:10%;
+
+        .list-item div:nth-child(1) {
+            width: 10%;
         }
-        .list-item div:nth-child(1) img{
-            width:100%;
-            height: 100px;
+
+        .list-item div:nth-child(1) img {
+            width: 100%;
+            height: 100%;
         }
-        .list-item div:nth-child(2){
-            width:50%;
+
+        .list-item div:nth-child(2) {
+            width: 50%;
         }
-        .list-item div:nth-child(3){
-            width:15%;
+
+        .list-item div:nth-child(3) {
+            width: 15%;
         }
-        .list-item div:nth-child(4){
-            width:15%;
-        }.list-item div:nth-child(5){
-            width:10%;
+
+        .list-item div:nth-child(4) {
+            width: 15%;
+        }
+
+        .list-item div:nth-child(5) {
+            width: 10%;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -100,21 +110,27 @@ include_once "./api/base.php";
         echo "</li>";
         foreach ($files as $file) {
             echo "<li class='list-item'>";
-                echo "<div>";
+            echo "<div>";
+            if (is_image($file['type'])) {
                 echo "<img src='./upload/{$file['file_name']}'>";
-                echo "</div>";
-                echo "<div>";
-                echo $file['description'];
-                echo "</div>";
-                echo "<div>";
-                echo $file['file_name'];
-                echo "</div>";
-                echo "<div>";
-                echo $file['size'];
-                echo "</div>";
-                echo "<div>";
-                echo $file['type'];
-                echo "</div>";
+            } else {
+                $icon = dummy_icon($file['type']);
+                // echo $icon;
+                echo "<img src='./material/{$icon}' style='width:80px'>";
+            }
+            echo "</div>";
+            echo "<div>";
+            echo $file['description'];
+            echo "</div>";
+            echo "<div>";
+            echo $file['file_name'];
+            echo "</div>";
+            echo "<div>";
+            echo floor($file['size']/1024) ."KB";
+            echo "</div>";
+            echo "<div>";
+            echo $file['type'];
+            echo "</div>";
             echo "</li>";
         }
         echo "</ul>";
